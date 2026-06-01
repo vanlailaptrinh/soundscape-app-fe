@@ -1,0 +1,169 @@
+.adminWrapper
+    height: calc(100vh - 80px)
+    width: 100%
+    position: relative
+    background-color: var(--black-lv1)
+    color: var(--white-lv1)
+    padding: 10px
+
+    // LEFT PANEL (Navigation)
+    .adminLeft
+        height: 100%
+        position: absolute
+        top: 0
+        left: 10px
+        width: calc(16% - 10px)
+        padding: var(--padding-lv2)
+        background-color: var(--black-lv2)
+        border-radius: 8px
+        overflow-y: auto
+        transition: width 0.3s ease-in-out
+        z-index: 3
+
+        &::-webkit-scrollbar
+            width: 6px
+
+        &::-webkit-scrollbar-track
+            background: transparent
+
+        &::-webkit-scrollbar-thumb
+            background: var(--black-lv3)
+            border-radius: 4px
+
+            &:hover
+                background: var(--black-lv4)
+
+        .adminLogo
+            font-size: 28px
+            font-weight: 700
+            margin-bottom: 10px
+            padding: 10px 0
+            color: var(--white-lv1)
+            text-align: center
+            border-bottom: 2px solid var(--black-lv3)
+
+        .adminNav
+            display: block
+            padding: 14px 20px
+            margin-bottom: 8px
+            font-size: 16px
+            font-weight: 600
+            color: var(--white-lv2)
+            text-decoration: none
+            border-radius: 8px
+            cursor: pointer
+            transition: all 0.2s ease
+            position: relative
+
+            &:hover
+                background-color: var(--black-lv3)
+                color: var(--white-lv1)
+
+            &.active
+                background-color: var(--black-lv3)
+                color: var(--white-lv1)
+
+                &::before
+                    content: ""
+                    position: absolute
+                    left: 0
+                    top: 50%
+                    transform: translateY(-50%)
+                    width: 4px
+                    height: 100%
+                    background-color: rgb(30, 215, 96)
+                    border-radius: 4px
+
+    // MIDDLE PANEL (Main Content)
+    .adminMiddle
+        height: 100%
+        position: absolute
+        top: 0
+        left: calc(16% + 10px)
+        width: calc(82% - 20px)
+        padding: var(--padding-lv2)
+        background-color: var(--black-lv2)
+        border-radius: 8px
+        overflow-y: auto
+        transition: width 0.3s ease-in-out, left 0.3s ease-in-out
+        z-index: 2
+
+        &::-webkit-scrollbar
+            width: 8px
+
+        &::-webkit-scrollbar-track
+            background: transparent
+
+        &::-webkit-scrollbar-thumb
+            background: var(--black-lv3)
+            border-radius: 4px
+
+            &:hover
+                background: var(--black-lv4)
+
+        // Khi rightPanel active
+        &.rightActive
+            width: calc(57% - 10px)
+
+    // RIGHT PANEL (Detail View)
+    .adminRight
+        height: 100%
+        position: absolute
+        top: 0
+        right: 10px
+        width: calc(27% - 20px)
+        padding: var(--padding-lv2)
+        background-color: var(--black-lv2)
+        border-radius: 8px
+        overflow-y: auto
+        transform: translateX(calc(100% + 20px))
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out
+        opacity: 0
+        z-index: 10
+
+        &::-webkit-scrollbar
+            width: 8px
+
+        &::-webkit-scrollbar-track
+            background: transparent
+
+        &::-webkit-scrollbar-thumb
+            background: var(--black-lv3)
+            border-radius: 4px
+
+            &:hover
+                background: var(--black-lv4)
+
+        // Khi có nội dung và được kích hoạt
+        &.rightActive
+            transform: translateX(0)
+            opacity: 1
+
+        // Header của right panel
+        .rightPanelHeader
+            display: flex
+            align-items: center
+            justify-content: space-between
+            margin-bottom: 20px
+            padding-bottom: 15px
+            border-bottom: 2px solid var(--black-lv3)
+
+            .rightPanelTitle
+                font-size: 20px
+                font-weight: 700
+                color: var(--white-lv1)
+
+            .closeRightPanel
+                width: 32px
+                height: 32px
+                display: flex
+                align-items: center
+                justify-content: center
+                border-radius: 50%
+                cursor: pointer
+                transition: background-color 0.2s ease
+                color: var(--white-lv2)
+
+                &:hover
+                    background-color: var(--black-lv3)
+                    color: var(--white-lv1)

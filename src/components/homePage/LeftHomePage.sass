@@ -1,0 +1,281 @@
+.leftHomePage
+    height: 100%
+    position: absolute
+    top: 0
+    left: 10px
+    width: calc(27% - 10px)
+    font-size: 14px
+    padding: var(--padding-lv2)
+    font-weight: 700
+    color: var(--white-lv1)
+    background-color: var(--black-lv2)
+    border-radius: 5px
+    transition: width 0.3s linear
+    z-index: 2
+    overflow-y: scroll
+
+    .leftHeader
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+        .titleShrink
+            display: flex
+            align-items: center
+            position: relative
+
+            .shrinkBtn
+                opacity: 0
+                transform: translateX(-20px)
+                transition: opacity 0.3s linear, transform 0.3s linear
+                cursor: pointer
+                padding: 8px
+                border-radius: 50%
+
+                &:hover
+                    background-color: var(--black-lv3)
+
+            .title
+                transition: opacity 0.15s linear, transform 0.15s linear
+
+        .actions
+            display: flex
+            align-items: center
+
+            .createBtn
+                padding: 10px 20px
+                border-radius: 30px
+                background-color: var(--black-lv3)
+                cursor: pointer
+                transition: background-color 0.2s ease
+                font-size: 14px
+
+                &:hover
+                    background-color: var(--black-lv4)
+
+            .widenBtn
+                margin-left: 10px
+                padding: 10px
+                border-radius: 50%
+                color: var(--white-lv1)
+                cursor: pointer
+                transition: background-color 0.2s ease
+
+                &:hover
+                    background-color: var(--black-lv3)
+
+    &:hover
+        .shrinkBtn
+            opacity: 1
+            transform: translateX(0)
+
+
+.filters
+    display: flex
+    align-items: center
+    gap: 10px
+    margin-top: 20px
+
+    .filterItem
+        padding: 8px 20px
+        background-color: var(--black-lv3)
+        border-radius: 20px
+        cursor: pointer
+        transition: background-color 0.2s ease
+        font-size: 14px
+
+        &:hover
+            background-color: var(--gray-lv1)
+
+        &.active
+            background-color: var(--white-lv1)
+            color: var(--black-lv1)
+
+.searchList
+    margin-top: 20px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 10px
+
+    .searchBox
+        position: relative
+        display: flex
+        align-items: center
+        padding: 5px 10px
+        border-radius: 4px
+        background-color: var(--black-lv2)
+        overflow: hidden
+        flex: 1
+
+        .searchIcon
+            position: relative
+            z-index: 2
+            display: flex
+            align-items: center
+            justify-content: center
+
+        .searchInput
+            position: relative
+            border: none
+            background: transparent
+            color: var(--white-lv1)
+            margin-left: 10px
+            z-index: 2
+            opacity: 0
+            transform: translateX(-20px)
+            transition: opacity 0.3s linear, transform 0.3s linear
+            outline: none
+            width: 100%
+            font-size: 14px
+
+            &::placeholder
+                color: var(--white-lv2)
+
+        .clearSearchBtn
+            position: relative
+            z-index: 2
+            display: flex
+            align-items: center
+            justify-content: center
+            cursor: pointer
+            padding: 4px
+            border-radius: 50%
+            opacity: 0
+            transform: scale(0.8)
+            transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease
+
+            &:hover
+                background-color: var(--black-lv4)
+
+        .searchOverlay
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            background-color: var(--black-lv3)
+            transform: translateX(-100%)
+            transition: transform 0.3s ease-in-out
+            z-index: 1
+            pointer-events: none
+
+        // Khi hover hoặc có text
+        &:hover .searchOverlay,
+        &.hasText .searchOverlay
+            transform: translateX(0)
+
+        &:hover .searchInput,
+        &.hasText .searchInput
+            opacity: 1
+            transform: translateX(0)
+
+        &.hasText .clearSearchBtn
+            opacity: 1
+            transform: scale(1)
+
+    .recentList
+        display: flex
+        gap: 10px
+        align-items: center
+        cursor: pointer
+        padding: 8px
+        border-radius: 4px
+        transition: background-color 0.2s ease
+
+        &:hover
+            background-color: var(--black-lv3)
+
+        .recentTitle
+            font-weight: 600
+            font-size: 14px
+
+.followedContent
+    margin-top: 20px
+
+    .emptyState
+        text-align: center
+        color: var(--white-lv2)
+        padding: 40px 20px
+        font-weight: 400
+        font-size: 14px
+
+    .followedSection
+        margin-bottom: 16px
+
+        .sectionTitle
+            font-weight: 600
+            font-size: 12px
+            margin-bottom: 12px
+            color: var(--white-lv2)
+            text-transform: uppercase
+            letter-spacing: 0.5px
+
+        .followedList
+            display: flex
+            flex-direction: column
+            gap: 8px
+
+            .followedItem
+                display: flex
+                align-items: center
+                padding: 8px
+                border-radius: 4px
+                cursor: pointer
+                transition: background-color 0.2s ease
+
+                &:hover
+                    background-color: var(--black-lv3)
+
+                .itemImage
+                    width: 48px
+                    height: 48px
+                    min-width: 48px
+                    border-radius: 4px
+                    overflow: hidden
+                    background-color: var(--black-lv3)
+                    margin-right: 12px
+
+                    &.artistImage
+                        border-radius: 50%
+
+                    img
+                        width: 100%
+                        height: 100%
+                        object-fit: cover
+                        display: block
+
+                .itemInfo
+                    flex: 1
+                    overflow: hidden
+
+                    .itemName
+                        font-size: 14px
+                        font-weight: 600
+                        color: var(--white-lv1)
+                        margin-bottom: 4px
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
+
+                    .itemDetails
+                        font-size: 12px
+                        font-weight: 400
+                        color: var(--white-lv2)
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
+
+// Scrollbar styling
+.leftHomePage::-webkit-scrollbar
+    width: 8px
+
+.leftHomePage::-webkit-scrollbar-track
+    background: transparent
+
+.leftHomePage::-webkit-scrollbar-thumb
+    background: var(--black-lv3)
+    border-radius: 4px
+
+    &:hover
+        background: var(--black-lv4)

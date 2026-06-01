@@ -1,0 +1,100 @@
+.appStats
+    display: flex
+    flex-direction: column
+    gap: 25px
+    height: 100%
+    padding: 10px
+
+    h2
+        font-size: 26px
+        font-weight: 700
+        color: var(--white-lv1)
+        margin-bottom: 10px
+
+    .timeRangeButtons
+        display: flex
+        gap: 10px
+        margin-bottom: 20px
+
+        button
+            padding: 8px 20px
+            font-size: 14px
+            border-radius: 8px
+            border: 1px solid var(--black-lv2)
+            background-color: var(--black-lv3)
+            color: var(--white-lv2)
+            cursor: pointer
+            transition: all .2s ease
+
+            &:hover
+                background-color: var(--black-lv2)
+
+            &.activeRange
+                background-color: rgb(30, 215, 96)
+                color: var(--black-lv1)
+                border-color: rgb(30, 215, 96)
+
+    .statsChartWrapper
+        padding: 20px
+        background-color: var(--black-lv3)
+        border-radius: 10px
+
+    .topSongsTable
+        width: 100%
+        border-collapse: collapse
+        background-color: var(--black-lv3)
+        border-radius: 10px
+        overflow: hidden
+
+        thead
+            background-color: var(--black-lv3)
+            border-bottom: 2px solid var(--black-lv2)
+
+            th
+                padding: 14px
+                font-size: 14px
+                font-weight: 700
+                color: var(--white-lv2)
+                text-align: left
+                border-bottom: 1px solid var(--black-lv3)
+
+        tbody
+            tr
+                transition: background-color .2s ease
+
+                &:hover
+                    background-color: var(--black-lv1)
+
+                td
+                    padding: 14px
+                    font-size: 14px
+                    color: var(--white-lv1)
+                    border-bottom: 1px solid var(--black-lv3)
+
+        th:nth-child(1), td:nth-child(1)
+            width: 10%
+
+        th:nth-child(2), td:nth-child(2)
+            width: 25%
+
+        th:nth-child(3), td:nth-child(3)
+            width: 25%
+
+        th:nth-child(4), td:nth-child(4)
+            width: 20%
+
+        th:nth-child(5), td:nth-child(5)
+            width: 20%
+
+.chartBtn
+    padding: 6px 14px
+    background-color: #4A90E2
+    color: #fff
+    border: none
+    border-radius: 6px
+    cursor: pointer
+    font-size: 13px
+    transition: background .2s ease
+
+    &:hover
+        background-color: #357ABD

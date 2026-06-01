@@ -1,0 +1,161 @@
+@mixin listContainer($headerClass, $tableClass)
+    display: flex
+    flex-direction: column
+    height: 100%
+
+    #{$headerClass}
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-bottom: 20px
+
+        h2
+            font-size: 24px
+            font-weight: 700
+            color: var(--white-lv1)
+
+    #{$tableClass}
+        flex: 1
+        display: flex
+        flex-direction: column
+        min-height: 0
+        background-color: var(--black-lv3)
+        border-radius: 10px
+        overflow: hidden
+        margin-bottom: 20px
+
+        table
+            width: 100%
+            border-collapse: collapse
+            table-layout: fixed
+            height: 100%
+            display: flex
+            flex-direction: column
+
+            /* FIX WIDTH CHO 5 CỘT */
+
+
+            thead tr th:nth-child(1),
+            tbody tr td:nth-child(1)
+                width: 7%
+
+            thead tr th:nth-child(2),
+            tbody tr td:nth-child(2)
+                width: 23%
+
+            thead tr th:nth-child(3),
+            tbody tr td:nth-child(3)
+                width: 30%
+
+            thead tr th:nth-child(4),
+            tbody tr td:nth-child(4)
+                width: 20%
+
+            thead tr th:nth-child(5),
+            tbody tr td:nth-child(5)
+                width: 20%
+
+            thead
+                flex-shrink: 0
+
+                tr
+                    display: table
+                    width: 100%
+                    table-layout: fixed
+
+                    th
+                        padding: 14px
+                        text-align: left
+                        font-size: 14px
+                        font-weight: 700
+                        color: var(--white-lv2)
+                        background-color: var(--black-lv3)
+                        border-bottom: 1px solid var(--black-lv2)
+                        cursor: pointer
+                        user-select: none
+                        transition: all .2s ease
+
+                        &:hover
+                            color: var(--white-lv1)
+                            background-color: var(--black-lv1)
+
+                        &.active
+                            color: rgb(30, 215, 96)
+                            background-color: rgba(30, 215, 96, 0.08)
+
+                        .thContent
+                            display: flex
+                            align-items: center
+                            justify-content: space-between
+                            gap: 8px
+
+                            .sortIcon
+                                font-size: 10px
+                                opacity: 0.5
+                                transition: opacity .2s ease
+
+                        &:hover .sortIcon,
+                        &.active .sortIcon
+                            opacity: 1
+
+            tbody
+                display: block
+                flex: 1
+                width: 100%
+                overflow-y: auto
+                overflow-x: hidden
+
+                &.loadingRows
+                    opacity: 0.4
+                    transition: opacity .25s ease
+                    pointer-events: none
+
+                tr
+                    display: table
+                    width: 100%
+                    table-layout: fixed
+                    border-bottom: 1px solid var(--black-lv3)
+                    transition: background-color 0.2s ease
+
+                    &:hover
+                        background-color: var(--black-lv1)
+
+                    td
+                        padding: 14px
+                        font-size: 14px
+                        color: var(--white-lv1)
+
+                        .statusBadge
+                            display: inline-block
+                            padding: 4px 12px
+                            border-radius: 12px
+                            font-size: 12px
+                            font-weight: 600
+                            text-transform: uppercase
+
+                            &.active
+                                background-color: rgba(52, 199, 89, 0.18)
+                                color: #34c759
+
+                            &.banned
+                                background-color: rgba(255, 149, 0, 0.2)
+                                color: #ff9500
+
+                            &.locked
+                                background-color: rgba(255, 59, 48, 0.2)
+                                color: #ff3b30
+
+                        .viewBtn
+                            padding: 6px 18px
+                            background-color: var(--black-lv2)
+                            color: var(--white-lv1)
+                            border-radius: 6px
+                            border: 1px solid var(--black-lv1)
+                            cursor: pointer
+                            transition: all 0.2s ease
+                            font-size: 13px
+
+                            &:hover
+                                background-color: rgb(30, 215, 96)
+                                color: var(--black-lv1)
+                                border-color: rgb(30, 215, 96)

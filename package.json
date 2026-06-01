@@ -10,8 +10,28 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
+    "@fortawesome/react-fontawesome": "^3.3.1",
+    "@react-oauth/google": "^0.13.5",
+    "@reduxjs/toolkit": "^2.12.0",
+    "axios": "^1.16.1",
+    "bootstrap": "^5.3.8",
+    "chart.js": "^4.5.1",
+    "fast-average-color": "^9.5.2",
+    "framer-motion": "^12.40.0",
+    "jwt-decode": "^4.0.0",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-bootstrap": "^2.10.10",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^19.2.6",
+    "react-redux": "^9.3.0",
+    "react-router-dom": "^7.16.0",
+    "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^3.1.0",
+    "sass": "^1.100.0",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

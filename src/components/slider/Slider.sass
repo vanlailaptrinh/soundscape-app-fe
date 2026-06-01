@@ -1,0 +1,43 @@
+.listWrapper
+    position: relative
+    overflow: hidden
+    display: flex
+    align-items: center
+    width: 100%
+    padding: 10px 0
+
+    .list
+        display: flex
+        gap: 10px
+        white-space: nowrap
+        scroll-behavior: smooth
+        transition: transform 0.3s ease
+        overflow-x: auto
+
+    .scrollBtn
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        z-index: 2
+        background: var(--black-lv3)
+        border: none
+        color: white
+        cursor: pointer
+        border-radius: 50%
+        font-size: 18px
+        display: flex
+        align-items: center
+        justify-content: center
+        height: 30px
+        width: 30px
+
+    .scrollBtn.btnSliderLeft
+        left: 0
+
+    .scrollBtn.btnSliderRight
+        right: 0
+
+    .list::-webkit-scrollbar
+        display: none
+    .list
+        overflow: hidden

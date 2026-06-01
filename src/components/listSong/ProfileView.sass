@@ -1,0 +1,47 @@
+.profilePage
+    .profileHeader
+        background: linear-gradient(135deg, rgb(68 8 242), rgb(190 232 215))
+        display: flex
+        align-items: center
+        justify-content: left
+        gap: 20px
+
+        border-radius: 20px
+        padding: 40px 20px
+
+        .profileAvatar
+            border-radius: 50%
+            width: 150px
+            height: 150px
+
+        .profileUsername
+            color: white
+            font-size: 64px
+            font-weight: bold
+
+    .listeningChartContainer
+        h2
+            margin-top: 20px
+
+        .daysButtonGroup
+            display: flex
+            gap: 12px
+            margin: 20px 0
+
+            .dayButton
+                background: #2a2a2a
+                color: #eee
+                padding: 10px 20px
+                border-radius: 10px
+                border: none
+                cursor: pointer
+                transition: 0.2s ease
+                font-size: 14px
+
+                &:hover
+                    background: #3a3a3a
+
+
+                &.active
+                    background: #1DB954
+                    color: #000

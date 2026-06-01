@@ -1,0 +1,122 @@
+.yourMusicContainer
+    height: 100%
+    width: 100%
+    color: var(--white-lv1)
+    background-color: var(--black-lv2)
+    border-radius: 8px
+    overflow-y: auto
+    padding: 20px
+
+    .header
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+        .yourMusicHeader
+            font-size: 26px
+            font-weight: 700
+            margin-bottom: 25px
+
+        .uploadButton
+            background-color: rgb(30, 215, 96)
+            color: var(--black-lv1)
+            padding: 10px 20px
+            border: none
+            border-radius: 25px
+            cursor: pointer
+            font-weight: 600
+            font-size: 16px
+            margin-bottom: 20px
+            transition: background-color 0.3s ease, transform 0.2s ease
+            display: inline-block
+
+            &:hover
+                background-color: rgb(40, 230, 110)
+                transform: scale(1.05)
+
+    .yourMusicSection
+        display: grid
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))
+        gap: 20px
+
+        .yourMusicStatsButton
+            margin-top: 8px
+            padding: 6px 12px
+            background-color: #4A90E2
+            color: white
+            border: none
+            border-radius: 6px
+            font-size: 13px
+            cursor: pointer
+            transition: 0.2s ease
+
+            &:hover
+                background-color: #357ABD
+
+
+        .yourMusicCard
+            position: relative
+            padding: 10px
+            border-radius: 10px
+            text-align: left
+            background-color: transparent
+            transition: background 0.3s ease
+            cursor: pointer
+
+            &:hover
+                background: var(--black-lv3)
+
+            .yourMusicImage
+                img
+                    height: 150px
+                    width: 100%
+                    border-radius: 10px
+                    object-fit: cover
+
+            .yourMusicTitle
+                font-size: 18px
+                font-weight: 600
+                margin-top: 10px
+                color: var(--white-lv1)
+                text-overflow: ellipsis
+                overflow: hidden
+                white-space: nowrap
+                max-width: 150px
+
+            .yourMusicArtist
+                font-size: 14px
+                color: var(--white-lv2)
+                cursor: pointer
+                transition: color 0.3s ease
+
+                &:hover
+                    color: var(--white-lv1)
+
+            .yourMusicPlayButton
+                position: absolute
+                bottom: 50px
+                right: 10px
+                font-size: 20px
+                background-color: rgb(30, 215, 96)
+                height: 50px
+                width: 50px
+                display: flex
+                align-items: center
+                justify-content: center
+                color: var(--black-lv1)
+                border-radius: 50%
+                transform: translateY(40px)
+                opacity: 0
+                transition: all 0.3s ease
+
+            &:hover .yourMusicPlayButton
+                transform: translateY(0)
+                opacity: 1
+
+    .noResults
+        text-align: center
+        font-size: 18px
+        color: var(--white-lv2)
+        margin-top: 40px
+
+

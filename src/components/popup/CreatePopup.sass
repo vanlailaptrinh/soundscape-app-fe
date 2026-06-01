@@ -1,0 +1,156 @@
+@keyframes popupFadeIn
+    from
+        opacity: 0
+        transform: scale(0.9)
+    to
+        opacity: 1
+        transform: scale(1)
+
+.popupOverlay
+    position: fixed
+    inset: 0
+    background: rgba(0, 0, 0, 0.65)
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 1000
+    backdrop-filter: blur(3px)
+    animation: popupFadeIn 0.25s ease-out
+
+    .popupBox
+        background: #181818
+        color: white
+        border-radius: 16px
+        padding: 28px
+        width: 900px
+        height: 500px
+        display: flex
+        flex-direction: column
+        gap: 24px
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6)
+        animation: popupFadeIn 0.25s ease-out forwards
+
+        h2
+            margin: 0
+            font-size: 22px
+            font-weight: 600
+            text-align: center
+
+        .popupContent
+            flex: 1
+            display: flex
+            gap: 24px
+            overflow: hidden
+
+            .leftSection
+                flex: 1
+                background: #000
+                // ✅ nền đen nếu ảnh nhỏ hoặc thiếu
+                border-radius: 10px
+                display: flex
+                align-items: center
+                justify-content: center
+                overflow: hidden
+
+                .coverUpload
+                    cursor: pointer
+                    width: 100%
+                    height: 100%
+                    position: relative
+                    display: flex
+                    align-items: center
+                    justify-content: center
+
+                    img
+                        width: 100%
+                        height: 100%
+                        object-fit: cover
+                        // ✅ ảnh chiếm full chiều cao
+                        border-radius: 10px
+                        background: #000
+                    // ✅ nếu ảnh chưa load vẫn đen
+
+                    input
+                        display: none
+
+            .rightSection
+                flex: 1
+                display: flex
+                flex-direction: column
+                gap: 12px
+
+                .inputGroup
+                    display: flex
+                    flex-direction: column
+
+                    label
+                        font-size: 15px
+                        font-weight: 500
+                        margin-bottom: 6px
+
+                    input
+                        background: #242424
+                        border: 1px solid #333
+                        color: white
+                        border-radius: 8px
+                        padding: 10px
+                        font-size: 15px
+                        transition: border-color 0.2s ease, background 0.2s ease
+
+                        &:focus
+                            outline: none
+                            border-color: #1db954
+                            background: #202020
+
+                // ✅ Description chiếm toàn bộ phần còn lại
+                .inputGroup:last-child
+                    flex-grow: 1
+                    display: flex
+                    flex-direction: column
+
+                    textarea
+                        flex-grow: 1
+                        background: #242424
+                        border: 1px solid #333
+                        color: white
+                        border-radius: 8px
+                        padding: 10px
+                        font-size: 15px
+                        resize: none
+                        transition: border-color 0.2s ease, background 0.2s ease
+
+                        &:focus
+                            outline: none
+                            border-color: #1db954
+                            background: #202020
+
+        .popupActions
+            display: flex
+            justify-content: flex-end
+            gap: 12px
+
+            .cancelBtn, .createBtn
+                border: none
+                border-radius: 8px
+                padding: 10px 20px
+                cursor: pointer
+                font-weight: 600
+                font-size: 15px
+                transition: transform 0.15s ease, background 0.2s ease
+
+                &:hover
+                    transform: translateY(-2px)
+
+            .cancelBtn
+                background: #333
+                color: white
+
+                &:hover
+                    background: #444
+
+            .createBtn
+                background: #1db954
+                color: white
+
+                &:hover
+                    background: #1ed760

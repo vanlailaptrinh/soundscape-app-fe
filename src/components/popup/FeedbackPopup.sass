@@ -1,0 +1,63 @@
+.feedback-popup-container
+    position: fixed
+    bottom: 20px
+    right: 20px
+    z-index: 9999
+    background: rgba(0, 0, 0, 0.3)
+    padding: 6px
+    border-radius: 12px
+    animation: fadeIn 0.3s ease
+
+    .feedback-popup
+        background: var(--black-lv3)
+        border-radius: 10px
+        padding: 16px
+        width: 260px
+        font-family: sans-serif
+        transition: padding 0.2s ease
+
+        &.thankyou-active
+            padding: 10px 12px
+
+        h3
+            font-size: 15px
+            margin-bottom: 10px
+            text-align: center
+
+        .rating-buttons
+            display: flex
+            flex-direction: column
+            gap: 6px
+            margin-bottom: 10px
+
+            .rating-btn
+                border-radius: 6px
+                padding: 6px 8px
+                background: var(--black-lv3)
+                cursor: pointer
+                text-align: left
+                font-size: 13px
+                transition: 0.2s
+                color: var(--white-lv1)
+
+                &:hover
+                    background: var(--white-lv1)
+                    border-color: var(--black-lv2)
+                    color: var(--black-lv2)
+
+                &:disabled
+                    opacity: 0.6
+                    cursor: not-allowed
+
+        .thankyou
+            text-align: center
+            font-weight: bold
+            color: var(--white-lv1)
+
+@keyframes fadeIn
+    from
+        opacity: 0
+        transform: translateY(20px)
+    to
+        opacity: 1
+        transform: translateY(0)

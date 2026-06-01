@@ -1,0 +1,31 @@
+.paginationContainer
+    margin-top: auto
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 15px
+    padding-bottom: 10px
+
+    button
+        padding: 6px 14px
+        background-color: var(--black-lv3)
+        color: var(--white-lv2)
+        border: none
+        border-radius: 6px
+        cursor: pointer
+        transition: all .2s ease
+
+        &:active
+            transform: scale(0.92)
+
+        &:disabled
+            opacity: 0.4
+            cursor: not-allowed
+
+        &:not(:disabled):hover
+            background-color: rgb(30, 215, 96)
+            color: var(--black-lv1)
+
+    span
+        font-size: 14px
+        color: var(--white-lv2)

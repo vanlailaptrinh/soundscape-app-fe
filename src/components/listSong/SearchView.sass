@@ -1,0 +1,134 @@
+.searchContainer
+    height: 100%
+    width: 100%
+    color: var(--white-lv1)
+    background-color: var(--black-lv2)
+    border-radius: 8px
+    overflow-y: auto
+
+    .searchHeader
+        font-size: 26px
+        font-weight: 700
+        margin-bottom: 25px
+
+    .searchSection
+
+        .searchTitle
+            font-size: 22px
+            font-weight: 700
+            margin-bottom: 15px
+
+        // --- Artist ---
+        .artistItem
+            position: relative
+            text-align: center
+            padding: 10px
+            border-radius: 10px
+            transition: background 0.3s ease
+
+            &:hover
+                background: var(--black-lv3)
+
+            .artistImage
+                margin-bottom: 10px
+
+                img
+                    height: 150px
+                    width: 150px
+                    border-radius: 50%
+                    object-fit: cover
+
+            .artistName
+                font-size: 18px
+                font-weight: 600
+                color: var(--white-lv1)
+
+        // --- Album ---
+        .albumItem
+            position: relative
+            padding: 10px
+            border-radius: 10px
+            text-align: left
+            transition: background 0.3s ease
+
+            &:hover
+                background: var(--black-lv3)
+
+            .albumImage
+                img
+                    height: 150px
+                    width: 150px
+                    border-radius: 10px
+                    object-fit: cover
+
+            .albumName
+                font-size: 18px
+                font-weight: 600
+                margin-top: 10px
+                color: var(--white-lv1)
+                text-overflow: ellipsis
+                overflow: hidden
+                white-space: nowrap
+
+            .albumArtist
+                font-size: 14px
+                color: var(--white-lv2)
+
+        // --- Song ---
+        .songItem
+            position: relative
+            padding: 10px
+            border-radius: 10px
+            text-align: left
+            transition: background 0.3s ease
+
+            &:hover
+                background: var(--black-lv3)
+
+            .songImage
+                img
+                    height: 150px
+                    width: 150px
+                    border-radius: 10px
+                    object-fit: cover
+
+            .songTitle
+                font-size: 20px
+                color: var(--white-lv1)
+                font-weight: 600
+                margin-top: 10px
+                max-width: 150px
+                text-overflow: ellipsis
+                overflow: hidden
+                white-space: nowrap
+
+            .songArtist
+                font-size: 14px
+                color: var(--white-lv2)
+
+            .songPlayButton
+                position: absolute
+                bottom: 50px
+                right: 10px
+                font-size: 20px
+                background-color: rgb(30, 215, 96)
+                height: 50px
+                width: 50px
+                display: flex
+                align-items: center
+                justify-content: center
+                color: var(--black-lv1)
+                border-radius: 50%
+                transform: translateY(40px)
+                opacity: 0
+                transition: all 0.3s ease
+
+            &:hover .songPlayButton
+                transform: translateY(0)
+                opacity: 1
+
+    .noResults
+        text-align: center
+        font-size: 18px
+        color: var(--white-lv2)
+        margin-top: 40px

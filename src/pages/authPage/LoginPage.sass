@@ -1,0 +1,113 @@
+.login-page
+    display: flex
+    flex-direction: column
+    align-items: center
+    background: linear-gradient(to bottom, rgb(42 42 42), var(--black-lv1))
+    min-height: 100vh
+
+    .sign-up
+        margin-top: 50px
+        padding: 50px 150px
+        border-radius: 8px
+        background-color: var(--black-lv1)
+        width: 650px
+
+        .sign-up-header
+            display: flex
+            flex-direction: column
+            align-items: center
+            margin-bottom: 20px
+
+            .sign-up-title
+                font-size: 40px
+                font-weight: 800
+                color: var(--white-lv1)
+                text-align: center
+
+        .sign-up-email
+            .email-label, .password-label
+                font-size: 12px
+                color: var(--white-lv1)
+                font-weight: 600
+                margin-bottom: 10px
+
+            #email-input, #password-input
+                border: none
+                width: 100%
+                height: 40px
+                border-radius: 4px
+                border: 1px solid var(--black-lv4)
+                padding: 20px 10px
+                margin-bottom: 10px
+                background-color: var(--black-lv1)
+                font-weight: 600
+                color: var(--white-lv1)
+
+            .error-message
+                color: #f3727f
+                font-size: 14px
+                font-weight: 600
+                margin-bottom: 10px
+
+            .btn-login
+                width: 100%
+                height: 40px
+                background-color: rgb(30 215 96)
+                color: black
+                border: none
+                border-radius: 50px
+                font-size: 16px
+                font-weight: bold
+                cursor: pointer
+                margin-bottom: 20px
+
+                &:hover
+                    background-color: rgb(31 235 104)
+
+        .divider
+            display: flex
+            align-items: center
+            color: var(--white-lv1)
+            font-size: 14px
+            margin-bottom: 20px
+
+            &::before, &::after
+                content: ""
+                flex: 1
+                border-bottom: 1px solid #ccc
+
+            &::before
+                margin-right: 10px
+
+            &::after
+                margin-left: 10px
+
+        .dividerFull
+            width: 100%
+            height: 1px
+            background-color: var(--black-lv4)
+            margin-bottom: 30px
+
+        .sign-up-footer
+            .have-account
+                color: var(--black-lv4)
+                font-size: 14px
+                display: flex
+                gap: 5px
+                align-items: center
+                justify-content: center
+                margin-bottom: 40px
+
+                a
+                    color: var(--white-lv1)
+                    text-decoration: underline
+
+            .policy
+                color: var(--black-lv4)
+                font-size: 12px
+                text-align: center
+                margin-bottom: 20px
+
+                a
+                    color: var(--white-lv1)
+                    text-decoration: underline

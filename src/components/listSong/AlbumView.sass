@@ -1,0 +1,89 @@
+.albumContainer
+    .albumHeader
+        background: var(--black-lv3)
+        padding: 15px
+        border-radius: 10px
+        display: flex
+
+        .albumPicture
+            img
+                height: 150px
+                width: 150px
+                border-radius: 5px
+
+        .albumInfo
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            margin-left: 30px
+
+            .albumTitle
+                font-weight: 700
+                font-size: 64px
+
+            .albumDetails
+                display: flex
+                align-items: center
+                gap: 5px
+
+                .albumUserAvatar
+                    width: 20px
+                    height: 20px
+                    border-radius: 50%
+
+                .albumUserName, .albumSongCount, .albumTotalTime
+                    color: var(--white-lv1)
+
+    .albumBody
+        margin-top: 10px
+        .songList
+            margin-top: 20px
+            .songItem
+                display: flex
+                justify-content: space-between
+
+                .songRow
+                    display: flex
+                    align-items: center
+                    gap: 25px
+
+                    .songIndex
+                        line-height: 70px
+                        color: var(--white-lv2)
+
+                        .playButton
+                            font-size: 14px
+                            height: 20px
+                            width: 20px
+                            display: flex
+                            align-items: center
+                            justify-content: center
+                            color: var(--while-lv1)
+                            border-radius: 50%
+                            border: none
+                            cursor: pointer
+
+                    .songImage img
+                        height: 50px
+                        width: 40px
+                        object-fit: cover
+                        border-radius: 5px
+
+                    .songInfo
+                        display: flex
+                        flex-direction: column
+                        justify-content: center
+
+                        .songArtist
+                            font-size: 12px
+                            color: var(--white-lv2)
+
+                .songDuration
+                    line-height: 70px
+
+                &.active
+                    .songRow
+                        .playButton
+                            color: var(--green-lv1)
+                        .songTitle
+                            color: var(--green-lv1)

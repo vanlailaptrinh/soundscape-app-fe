@@ -1,0 +1,240 @@
+.centerHomePage
+    height: 100%
+    position: absolute
+    top: 0
+    left: calc(27% + 10px)
+    width: calc(73% - 20px)
+    color: var(--white-lv1)
+    background-color: var(--black-lv2)
+    padding: var(--padding-lv2)
+    border-radius: 8px
+    transition: width 0.3s linear
+    overflow-y: scroll
+
+    &.rightActive
+        width: 46%
+
+    .listeningHistoryContainer
+        .listeningHistoryTitle
+            font-size: 24px
+            font-weight: 700
+            margin-bottom: 20px
+
+        .listeningHistoryList
+            display: flex
+            align-items: center
+            flex-wrap: wrap
+            margin-bottom: 15px
+            padding: 10px
+            border-radius: 10px
+            cursor: pointer
+            gap: 10px
+            position: relative
+
+            .historyItem
+                display: flex
+                align-items: center
+                gap: 10px
+                background: var(--black-lv3)
+                border-radius: 8px
+                padding: 3px
+                position: relative
+                width: 24%
+                height: 50px
+                overflow: hidden
+
+                .historyImage
+                    position: absolute
+                    top: 0
+                    left: 0
+
+                    img
+                        height: 50px
+                        width: 50px
+                        border-radius: 5px
+                        object-fit: cover
+
+                .nameHistorySong
+                    margin-left: 70px
+                    font-size: 16px
+                    font-weight: 600
+                    color: var(--white-lv1)
+
+                .playHistoryButton
+                    position: absolute
+                    right: 10px
+                    font-size: 12px
+                    background-color: rgb(30, 215, 96)
+                    height: 35px
+                    width: 35px
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    border-radius: 50%
+                    opacity: 0
+                    transition: all 0.3s linear
+                    color: var(--black-lv1)
+
+                &:hover .playHistoryButton
+                    opacity: 1
+
+            .historyItem.rightActive
+                width: 49%
+
+
+    .trendingContainer
+        .trendingTitle
+            font-size: 24px
+            font-weight: 700
+
+        .trendingSongItem
+            position: relative
+            padding: 10px
+            border-radius: 10px
+
+            .trendingSongImage img
+                height: 150px
+                width: 150px
+                border-radius: 10px
+                object-fit: cover
+
+            &:hover
+                background: var(--black-lv3)
+
+            .trendingSongTitle
+                font-size: 20px
+                color: var(--white-lv1)
+                font-weight: 600
+                max-width: 150px
+                text-overflow: ellipsis
+                overflow: hidden
+                white-space: nowrap
+
+
+            .trendingSongArtist
+                font-size: 14px
+                color: var(--white-lv2)
+
+            .trendingPlayButton
+                position: absolute
+                bottom: 50px
+                right: 10px
+                font-size: 20px
+                background-color: rgb(30, 215, 96)
+                height: 50px
+                width: 50px
+                display: flex
+                align-items: center
+                justify-content: center
+                color: var(--black-lv1)
+                border-radius: 50%
+                transform: translateY(40px)
+                opacity: 0
+                transition: all 0.3s ease
+
+            &:hover .trendingPlayButton
+                transform: translateY(0)
+                opacity: 1
+
+    .topAlbumsContainer, .topArtistController
+        margin-top: 50px
+
+        .topAlbumsHeader, .topArtsHeader
+            display: flex
+            justify-content: space-between
+            align-items: center
+            margin-bottom: 20px
+
+            .topAlbumsTitle, .topArtistTitle
+                font-size: 24px
+                font-weight: 700
+
+            .viewAllAlbums, .viewAllArtists
+
+        .albumItem
+            .albumImage
+                img
+                    height: 150px
+                    width: 150px
+                    border-radius: 10px
+                    object-fit: cover
+
+            .albumName
+                font-size: 18px
+                font-weight: 600
+                margin-top: 10px
+                color: var(--white-lv1)
+
+            .albumArtist
+                font-size: 14px
+                color: var(--white-lv2)
+
+    .artistItem
+        .artistImage
+            img
+                height: 150px
+                width: 150px
+                border-radius: 50%
+                object-fit: cover
+
+        .artistName
+            text-align: center
+            font-size: 18px
+            font-weight: 600
+            margin-top: 10px
+
+    .recommendContainer
+        margin-top: 30px
+
+        .recommendTitle
+            font-size: 24px
+            font-weight: 700
+
+        .recommendSongItem
+            position: relative
+            padding: 10px
+            border-radius: 10px
+
+            .recommendSongImage img
+                height: 150px
+                width: 150px
+                border-radius: 10px
+                object-fit: cover
+
+            &:hover
+                background: var(--black-lv3)
+
+            .recommendSongTitle
+                font-size: 20px
+                color: var(--white-lv1)
+                font-weight: 600
+                max-width: 150px
+                text-overflow: ellipsis
+                overflow: hidden
+                white-space: nowrap
+
+
+            .recommendSongArtist
+                font-size: 14px
+                color: var(--white-lv2)
+
+            .recommendPlayButton
+                position: absolute
+                bottom: 50px
+                right: 10px
+                font-size: 20px
+                background-color: rgb(30, 215, 96)
+                height: 50px
+                width: 50px
+                display: flex
+                align-items: center
+                justify-content: center
+                color: var(--black-lv1)
+                border-radius: 50%
+                transform: translateY(40px)
+                opacity: 0
+                transition: all 0.3s ease
+
+            &:hover .recommendPlayButton
+                transform: translateY(0)
+                opacity: 1
