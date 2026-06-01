@@ -5,9 +5,14 @@ import { setReduxAccessToken, setReduxLogout } from '~/redux/reducer/authSlice';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
 
+axios.defaults.headers.common['ngrok-skip-browser-warning'] = '69420';
+
 const api = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
+    headers: {
+        'ngrok-skip-browser-warning': '69420'
+    }
 });
 
 let isRefreshing = false;
