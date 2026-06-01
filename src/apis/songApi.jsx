@@ -34,6 +34,17 @@ async function getTrendingSongs(page = 0, size = 10, days = 7) {
     }
 }
 
+async function getRecentSongs(page = 0, size = 10) {
+    try {
+        const res = await api.get('open/songs/recent', {
+            params: { page, size },
+        });
+        return res.data.content;
+    } catch (err) {
+        throw err;
+    }
+}
+
 async function getSongAndArtistBySongId(songId) {
     try {
         const res = await api.get(`open/songs/${songId}`);
@@ -551,6 +562,7 @@ export {
     uploadSong,
     getAllSongGenres,
     getTrendingSongs,
+    getRecentSongs,
     getSongAndArtistBySongId,
     listenSong,
     calDurationSong,

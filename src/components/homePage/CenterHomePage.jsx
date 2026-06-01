@@ -11,6 +11,7 @@ import {
     getTrendingAlbums,
     getTrendingArtists,
     getTrendingSongs,
+    getRecentSongs,
     getRecommendSongs,
 } from '~/apis/songApi';
 import { setReduxIsPlaying, setReduxIsRight, setReduxLibrarySong } from '~/redux/reducer/songNotWhitelistSlice';
@@ -42,6 +43,7 @@ const CenterHomePage = () => {
     const [topArtists, setTopArtists] = useState([]);
     const [listeningHistory, setListeningHistory] = useState([]);
     const [recommendSongs, setRecommendSongs] = useState([]);
+    const [recentSongs, setRecentSongs] = useState([]);
     const [pageType, setPageType] = useState(null);
     const [pageId, setPageId] = useState(null);
 
@@ -54,7 +56,12 @@ const CenterHomePage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const requests = [getTrendingSongs(), getTrendingAlbums(), getTrendingArtists()];
+                const requests = [
+                    getTrendingSongs(),
+                    getTrendingAlbums(),
+                    getTrendingArtists(),
+                    getRecentSongs(),
+                ];
 
                 if (isLogin) {
                     requests.push(getRecommendSongs());
@@ -62,14 +69,15 @@ const CenterHomePage = () => {
 
                 const results = await Promise.allSettled(requests);
 
-                const [songs, albums, artists, recommend] = results;
+                const [songs, albums, artists, recent, recommend] = results;
 
-                if (songs?.status === 'fulfilled') setTrendingSongs(songs.value);
-                if (albums?.status === 'fulfilled') setTopAlbums(albums.value);
-                if (artists?.status === 'fulfilled') setTopArtists(artists.value);
+                if (songs?.status === 'fulfilled') setTrendingSongs(songs.value ?? []);
+                if (albums?.status === 'fulfilled') setTopAlbums(albums.value ?? []);
+                if (artists?.status === 'fulfilled') setTopArtists(artists.value ?? []);
+                if (recent?.status === 'fulfilled') setRecentSongs(recent.value ?? []);
 
                 if (isLogin && recommend?.status === 'fulfilled') {
-                    setRecommendSongs(recommend.value);
+                    setRecommendSongs(recommend.value ?? []);
                 } else {
                     setRecommendSongs([]);
                 }
@@ -279,6 +287,34 @@ const CenterHomePage = () => {
                                 ))}
                             </Slider>
                         </div>
+
+                        {recentSongs.length > 0 && (
+                            <div className="trendingContainer">
+                                <div className="trendingTitle">New Releases</div>
+                                <Slider>
+                                    {recentSongs.map((song) => (
+                                        <div
+                                            key={song.id}
+                                            className="trendingSongItem"
+                                            onContextMenu={(e) => {
+                                                handleLibrarySong(e, [
+                                                    { type: 'playlist', id: song.id },
+                                                    { type: 'artist', id: song.artistId },
+                                                ]);
+                                            }}>
+                                            <div className="trendingSongImage">
+                                                <img src={song.imageUrl || NoAvatar} alt={song.title} />
+                                            </div>
+                                            <div className="trendingSongTitle">{song.title}</div>
+                                            <p className="trendingSongArtist">{song.username || 'No name'}</p>
+                                            <div className="trendingPlayButton" onClick={(e) => listenSong(e, song.id)}>
+                                                <FontAwesomeIcon icon={faPlay} />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </Slider>
+                            </div>
+                        )}
 
                         <div className="topAlbumsContainer">
                             <div className="topAlbumsHeader">
