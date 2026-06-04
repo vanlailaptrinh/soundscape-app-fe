@@ -14,6 +14,7 @@ const SignUpInitiatePage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -27,8 +28,8 @@ const SignUpInitiatePage = () => {
         registerInitiate(email, password)
             .then((res) => {
                 dispatch(setReduxEmail(email));
-                console.log(res)
-                navigate("/signUpVerifyPage");
+                console.log(res);
+                setShowSuccessPopup(true);
             })
             .catch((error) => {
                 console.log("Error in catch:", error.response);
@@ -37,6 +38,29 @@ const SignUpInitiatePage = () => {
     };
     return (
         <div className="sign-up-page">
+            {showSuccessPopup && (
+                <div className="popup-overlay" style={{
+                    position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
+                    backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+                }}>
+                    <div className="popup-content" style={{
+                        backgroundColor: '#121212', padding: '40px', borderRadius: '8px',
+                        textAlign: 'center', color: '#fff', maxWidth: '400px', margin: '0 20px',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
+                    }}>
+                        <h2 style={{ marginBottom: '20px', fontSize: '24px', fontWeight: 'bold' }}>Registration Successful!</h2>
+                        <p style={{ marginBottom: '30px', color: '#b3b3b3', fontSize: '16px', lineHeight: '1.5' }}>
+                            We have sent an activation link to your email. Please check your inbox and click the link to activate your account.
+                        </p>
+                        <button onClick={() => navigate('/loginPage')} style={{
+                            backgroundColor: '#1ed760', color: '#000', border: 'none', padding: '14px 32px',
+                            borderRadius: '500px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer'
+                        }}>
+                            Go to Login
+                        </button>
+                    </div>
+                </div>
+            )}
             <div className="sign-up">
                 <header className="sign-up-header">
                     <LogoMain height={32} />

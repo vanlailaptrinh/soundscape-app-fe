@@ -19,6 +19,7 @@ const pages = {
     '/profile/*': HomePage,
     '/signUpInitiatePage': SignUpInitiatePage,
     '/signUpVerifyPage': SignUpVerifyPage,
+    '/api/auth/register-verify': SignUpVerifyPage,
     '/loginPage': LoginPage,
     '/auth/google-callback': GoogleCallback,
     '/song/upload': UploadSongPage,
