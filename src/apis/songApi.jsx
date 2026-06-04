@@ -527,9 +527,23 @@ async function getSongMonthlyStats(songId, months = 6) {
 }
 
 async function getAppListeningStats(days = 30) {
-    return api.get(`/admin/statistics/analyse`, {
-        params: { days },
-    });
+    try {
+        const res = await api.get(`/admin/statistics/analyse`, {
+            params: { days },
+        });
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
+}
+
+async function getAllArtists() {
+    try {
+        const res = await api.get('/open/artists');
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
 }
 
 async function getSongDailyStats(songId, days = 30) {
@@ -618,6 +632,7 @@ export {
     getSongMonthlyStats,
     getAppListeningStats,
     getSongDailyStats,
+    getAllArtists,
     getMyProfile,
     getMyListeningDaily,
 };

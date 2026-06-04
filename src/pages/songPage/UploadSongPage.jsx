@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { uploadSong, getAllSongGenres } from '~/apis/songApi';
+import { useSelector } from 'react-redux';
+import { uploadSong, getAllSongGenres, getAllArtists } from '~/apis/songApi';
 import Navigation from '~/components/navs/Navigation';
 import './UploadSongPage.sass';
 
 const UploadSongPage = () => {
+    const currentUser = useSelector((state) => state.auth.reduxUser);
+
     const [fileMedia, setFileMedia] = useState(null);
     const [fileImage, setFileImage] = useState(null);
     const [mediaPreview, setMediaPreview] = useState(null);
@@ -16,6 +19,9 @@ const UploadSongPage = () => {
     const [albumId, setAlbumId] = useState('');
     const [genreIds, setGenreIds] = useState([]);
     const [genres, setGenres] = useState([]);
+    
+    const [artists, setArtists] = useState([]);
+    const [collaboratorIds, setCollaboratorIds] = useState([]);
 
     const [errorTitle, setErrorTitle] = useState('');
     const [errorAuthor, setErrorAuthor] = useState('');
@@ -109,6 +115,7 @@ const UploadSongPage = () => {
             formData.append('singer', singer);
             formData.append('albumId', albumId);
             genreIds.forEach((id) => formData.append('genreIds', id));
+            collaboratorIds.forEach((id) => formData.append('collaboratorIds', id));
 
             await uploadSong(formData);
 
@@ -125,6 +132,7 @@ const UploadSongPage = () => {
             setSinger('');
             setAlbumId('');
             setGenreIds([]);
+            setCollaboratorIds([]);
         } catch (err) {
             console.error(err);
             setStatus('error');
@@ -133,20 +141,33 @@ const UploadSongPage = () => {
     };
 
     useEffect(() => {
-        const fetchGenres = async () => {
+        const fetchData = async () => {
             try {
-                const data = await getAllSongGenres();
-                setGenres(data || []);
+                const [genresData, artistsData] = await Promise.all([
+                    getAllSongGenres(),
+                    getAllArtists()
+                ]);
+                setGenres(genresData || []);
+                setArtists(artistsData || []);
             } catch (err) {
-                console.error('Failed to load genres', err);
+                console.error('Failed to load genres or artists', err);
                 setGenres([]);
+                setArtists([]);
             }
         };
-        fetchGenres();
+        fetchData();
     }, []);
 
     const toggleSelect = (id) => {
         setGenreIds(genreIds.includes(id) ? genreIds.filter((x) => x !== id) : [...genreIds, id]);
+    };
+
+    const toggleCollaborator = (id) => {
+        setCollaboratorIds(
+            collaboratorIds.includes(id)
+                ? collaboratorIds.filter((x) => x !== id)
+                : [...collaboratorIds, id]
+        );
     };
 
     useEffect(() => {
@@ -166,6 +187,7 @@ const UploadSongPage = () => {
                         <form onSubmit={handleSubmit} className="upload-song-form">
                             <div className="form-content">
                                 <div className="left">
+                                    {/* --- Media Upload Box --- */}
                                     <div
                                         className={`media-box ${dragOverMedia ? 'drag-over' : ''}`}
                                         onClick={handleMediaClick}
@@ -187,7 +209,9 @@ const UploadSongPage = () => {
                                             )
                                         ) : (
                                             <div className="placeholder">
-                                                Click hoặc kéo thả file audio/video vào đây
+                                                <span className="placeholder-icon">🎵</span>
+                                                <span className="placeholder-text">Click hoặc kéo thả file audio/video vào đây</span>
+                                                <span className="placeholder-hint">MP3, WAV, MP4, MOV...</span>
                                             </div>
                                         )}
                                     </div>
@@ -198,6 +222,8 @@ const UploadSongPage = () => {
                                         onChange={handleMediaChange}
                                         hidden
                                     />
+
+                                    {/* --- Cover Image Box --- */}
                                     <div
                                         className={`image-box ${dragOverImage ? 'drag-over' : ''}`}
                                         onClick={handleImageClick}
@@ -212,7 +238,11 @@ const UploadSongPage = () => {
                                                 onClick={(e) => e.stopPropagation()}
                                             />
                                         ) : (
-                                            <div className="placeholder">Click hoặc kéo thả ảnh bìa vào đây</div>
+                                            <div className="placeholder">
+                                                <span className="placeholder-icon">🖼️</span>
+                                                <span className="placeholder-text">Click hoặc kéo thả ảnh bìa vào đây</span>
+                                                <span className="placeholder-hint">JPG, PNG, WEBP...</span>
+                                            </div>
                                         )}
                                     </div>
                                     <input
@@ -222,6 +252,20 @@ const UploadSongPage = () => {
                                         onChange={handleImageChange}
                                         hidden
                                     />
+
+                                    {/* --- File name hints --- */}
+                                    {fileMedia && (
+                                        <div className="file-hint">
+                                            <span className="file-hint-icon">✓</span>
+                                            {fileMedia.name}
+                                        </div>
+                                    )}
+                                    {fileImage && (
+                                        <div className="file-hint">
+                                            <span className="file-hint-icon">✓</span>
+                                            {fileImage.name}
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="right">
@@ -253,7 +297,7 @@ const UploadSongPage = () => {
                                         {errorAuthor && <p className="error-text">{errorAuthor}</p>}
                                     </div>
 
-                                    <label>Genre</label>
+                                    <label className="section-label">Genre</label>
                                     <div className="multi-select">
                                         <div className="options">
                                             {genres.map((g) => (
@@ -264,6 +308,22 @@ const UploadSongPage = () => {
                                                     {g.name}
                                                 </div>
                                             ))}
+                                        </div>
+                                    </div>
+
+                                    <label className="section-label">Collaborators (Co-artists)</label>
+                                    <div className="multi-select">
+                                        <div className="options">
+                                            {artists
+                                                .filter((a) => a.id !== currentUser?.id)
+                                                .map((a) => (
+                                                    <div
+                                                        key={a.id}
+                                                        className={`option ${collaboratorIds.includes(a.id) ? 'active' : ''}`}
+                                                        onClick={() => toggleCollaborator(a.id)}>
+                                                        {a.username}
+                                                    </div>
+                                                ))}
                                         </div>
                                     </div>
 

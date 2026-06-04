@@ -76,6 +76,7 @@ const AppRoutes = () => {
                         left: 0,
                         zIndex: 1,
                         backgroundColor: '#000',
+                        overflowY: 'auto',
                     }}>
                     <Routes location={location}>
                         {Object.entries(pages).map(([path, Component]) => (

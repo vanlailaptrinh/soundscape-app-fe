@@ -139,6 +139,9 @@ const ArtistSongList = ({ artistId, onPlayListSong, handleLibrarySong }) => {
                                         <div className="artistSongTitle">{song.title || song.author || 'Untitled'}</div>
                                         <div className="artistSongArtist">
                                             {song.author || artist?.username || artist?.email || 'Unknown Artist'}
+                                            {song.collaborators && song.collaborators.length > 0 && (
+                                                <span>{` ft. ${song.collaborators.map(c => c.username).join(', ')}`}</span>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

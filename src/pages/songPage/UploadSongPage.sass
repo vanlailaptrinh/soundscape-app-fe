@@ -1,99 +1,204 @@
+// =============================================
 // Upload Song Page
+// =============================================
 .upload-song-page
     min-height: 100vh
     background: var(--black-lv2)
     display: flex
-    align-items: center
-    justify-content: center
     flex-direction: column
-    position: relative
-    padding-bottom: 50px
-
-    .title
-        color: var(--white-lv1)
-        margin-bottom: 20px
+    align-items: center
+    padding: 80px 24px 60px
+    box-sizing: border-box
 
 // Page Center Container
 .page-center
     width: 100%
-    max-width: 1200px
-    display: flex
-    align-items: center
-    justify-content: center
-    z-index: 1
+    max-width: 1100px
 
 // Card Container
 .card
     width: 100%
-    background: rgba(30, 30, 40, 0.7)
-    backdrop-filter: blur(20px)
+    background: rgba(28, 28, 38, 0.85)
+    backdrop-filter: blur(24px)
     border-radius: 20px
-    padding: 30px
+    padding: 36px 40px
     color: #fff
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05)
-    border: 1px solid rgba(255, 255, 255, 0.08)
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06)
+    border: 1px solid rgba(255, 255, 255, 0.07)
+    box-sizing: border-box
 
-// Upload Song Form
+    .title
+        color: var(--white-lv1)
+        font-size: 26px
+        font-weight: 700
+        margin: 0 0 28px 0
+
+// =============================================
+// Form Layout
+// =============================================
 .upload-song-form
+    display: flex
+    flex-direction: column
+    gap: 0
+
     .form-content
         display: grid
-        grid-template-columns: 650px 1fr
-        gap: 30px
+        grid-template-columns: 1fr 1fr
+        gap: 32px
         align-items: start
 
-    // Left Column
+    // ---- LEFT COLUMN ----
     .left
         display: flex
         flex-direction: column
-        gap: 16px
+        gap: 14px
 
-    // Media & Image Boxes
-    .media-box,
-    .image-box
+    // File hint bar (shows selected file name)
+    .file-hint
+        display: flex
+        align-items: center
+        gap: 8px
+        font-size: 12px
+        color: #1db954
+        background: rgba(29, 185, 84, 0.08)
+        border: 1px solid rgba(29, 185, 84, 0.2)
+        border-radius: 8px
+        padding: 7px 12px
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        animation: slideIn 0.25s ease
+
+        .file-hint-icon
+            font-size: 13px
+            font-weight: 700
+            flex-shrink: 0
+
+    // Media Box (taller - audio/video)
+    .media-box
         width: 100%
-        height: 260px
-        background: var(--black-lv3)
-        border-radius: 12px
+        height: 240px
+        background: rgba(255, 255, 255, 0.03)
+        border-radius: 14px
         overflow: hidden
         display: flex
         align-items: center
         justify-content: center
-        border: 2px solid rgba(255, 255, 255, 0.1)
-        transition: all 0.3s ease
-        position: relative
+        border: 2px dashed rgba(255, 255, 255, 0.12)
+        transition: all 0.25s ease
         cursor: pointer
+        box-sizing: border-box
 
         &:hover
-            border-color: var(--gray-lv1)
-            background: linear-gradient(135deg, #1f1f1f 0%, #2f2f2f 100%)
+            border-color: rgba(255, 255, 255, 0.3)
+            background: rgba(255, 255, 255, 0.05)
 
         &.drag-over
-            border-color: #4CAF50
-            background: rgba(76, 175, 80, 0.1)
+            border-color: #1db954
+            background: rgba(29, 185, 84, 0.08)
             border-style: solid
 
-        video,
-        audio
+        video
             width: 100%
             height: 100%
+            object-fit: cover
             border-radius: 12px
 
-        video,
-        img
-            object-fit: cover
+        audio
+            width: 90%
 
         .placeholder
+            display: flex
+            flex-direction: column
+            align-items: center
+            gap: 6px
             opacity: 0.5
             padding: 20px
             text-align: center
-            font-size: 13px
             color: #8888aa
+            user-select: none
+            pointer-events: none
 
-    // Right Column
+            .placeholder-icon
+                font-size: 26px
+                opacity: 0.7
+                line-height: 1
+
+            .placeholder-text
+                font-size: 12px
+
+            .placeholder-hint
+                font-size: 10.5px
+                opacity: 0.55
+                color: #666
+
+    // Image Box (square - cover art)
+    .image-box
+        width: 100%
+        aspect-ratio: 1 / 1
+        background: rgba(255, 255, 255, 0.03)
+        border-radius: 14px
+        overflow: hidden
+        display: flex
+        align-items: center
+        justify-content: center
+        border: 2px dashed rgba(255, 255, 255, 0.12)
+        transition: all 0.25s ease
+        cursor: pointer
+        box-sizing: border-box
+
+        &:hover
+            border-color: rgba(255, 255, 255, 0.3)
+            background: rgba(255, 255, 255, 0.05)
+
+        &.drag-over
+            border-color: #1db954
+            background: rgba(29, 185, 84, 0.08)
+            border-style: solid
+
+        img
+            width: 100%
+            height: 100%
+            object-fit: cover
+
+        .placeholder
+            display: flex
+            flex-direction: column
+            align-items: center
+            gap: 6px
+            opacity: 0.5
+            padding: 20px
+            text-align: center
+            color: #8888aa
+            user-select: none
+            pointer-events: none
+
+            .placeholder-icon
+                font-size: 26px
+                opacity: 0.7
+                line-height: 1
+
+            .placeholder-text
+                font-size: 12px
+
+            .placeholder-hint
+                font-size: 10.5px
+                opacity: 0.55
+                color: #666
+
+    // ---- RIGHT COLUMN ----
     .right
         display: flex
         flex-direction: column
-        gap: 16px
+        gap: 18px
+
+    // Section Label (for Genre, Collaborators - standalone labels in .right)
+    .section-label
+        font-size: 12px
+        font-weight: 600
+        color: #888
+        text-transform: uppercase
+        letter-spacing: 0.6px
 
     // Form Fields
     .field
@@ -101,206 +206,181 @@
         flex-direction: column
         gap: 6px
         position: relative
-        padding-bottom: 18px
+        padding-bottom: 20px
 
         label
-            font-size: 13px
+            font-size: 12px
             font-weight: 600
-            color: #aaa
+            color: #888
             text-transform: uppercase
-            letter-spacing: 0.5px
+            letter-spacing: 0.6px
 
         input
-            padding: 12px 14px
+            padding: 11px 14px
             border-radius: 10px
-            border: 2px solid rgba(255, 255, 255, 0.08)
-            background: rgba(255, 255, 255, 0.03)
+            border: 1.5px solid rgba(255, 255, 255, 0.08)
+            background: rgba(255, 255, 255, 0.04)
             color: #fff
             outline: none
             font-size: 14px
-            transition: all 0.3s ease
+            transition: all 0.25s ease
+            width: 100%
+            box-sizing: border-box
 
             &:focus
-                border-color: var(--gray-lv2)
-                background: rgba(255, 255, 255, 0.05)
-                box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1)
+                border-color: rgba(255, 255, 255, 0.25)
+                background: rgba(255, 255, 255, 0.06)
+                box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.08)
 
             &::placeholder
-                color: #555
+                color: #444
 
             &.error
-                border-color: #ff4d4f
+                border-color: #e53935
 
         .error-text
             position: absolute
-            bottom: 0
+            bottom: 2px
             left: 0
-            font-size: 12px
-            color: #ff4d4f
+            font-size: 11.5px
+            color: #e57373
             pointer-events: none
             opacity: 0
-            transform: translateY(5px)
-            transition: all 0.25s ease
+            transform: translateY(4px)
+            transition: all 0.2s ease
 
-        input.error + .error-text
+        input.error ~ .error-text
             opacity: 1
             transform: translateY(0)
 
+
     // Multi-Select Component
     .multi-select
-        max-height: 270px
+        max-height: 180px
         overflow-y: auto
-        border: 2px solid rgba(255, 255, 255, 0.08)
+        border: 1.5px solid rgba(255, 255, 255, 0.08)
         padding: 10px
         border-radius: 10px
         background: rgba(255, 255, 255, 0.02)
+        scrollbar-width: thin
+        scrollbar-color: rgba(255, 255, 255, 0.15) transparent
 
-        .options
-            display: grid
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
-            gap: 8px
-
-            .option
-                border-radius: 8px
-                padding: 8px 0
-                font-weight: 600
-                font-size: 11px
-                background: rgba(255, 255, 255, 0.05)
-                border: 2px solid transparent
-                cursor: pointer
-                transition: all 0.2s ease
-                text-align: center
-                overflow: hidden
-
-                &:hover
-                    background: rgba(255, 255, 255, 0.08)
-                    transform: translateY(-1px)
-
-                &.active
-                    color: var(--black-lv1)
-                    background: var(--white-lv1)
-
-        // Scrollbar Styling
         &::-webkit-scrollbar
-            width: 8px
-
-        &::-webkit-scrollbar-button
-            display: none
+            width: 6px
 
         &::-webkit-scrollbar-track
-            background: var(--gray-lv1)
+            background: transparent
 
         &::-webkit-scrollbar-thumb
-            background: var(--gray-lv2)
+            background: rgba(255, 255, 255, 0.15)
             border-radius: 4px
 
             &:hover
-                background: var(--gray-lv3)
+                background: rgba(255, 255, 255, 0.25)
+
+        .options
+            display: grid
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr))
+            gap: 7px
+
+            .option
+                border-radius: 8px
+                padding: 7px 4px
+                font-weight: 600
+                font-size: 11px
+                background: rgba(255, 255, 255, 0.04)
+                border: 1.5px solid transparent
+                cursor: pointer
+                transition: all 0.18s ease
+                text-align: center
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
+                color: #aaa
+
+                &:hover
+                    background: rgba(255, 255, 255, 0.08)
+                    color: #fff
+                    transform: translateY(-1px)
+
+                &.active
+                    color: #111
+                    background: #fff
+                    border-color: #fff
 
     // Submit Button
     .submit-btn
         width: 100%
-        padding: 14px 28px
-        margin-top: 6px
-        background: var(--black-lv3)
-        color: #fff
+        padding: 13px 28px
+        margin-top: 4px
+        background: #1db954
+        color: #000
         border: none
-        border-radius: 10px
+        border-radius: 50px
         font-weight: 700
-        font-size: 15px
+        font-size: 14px
         cursor: pointer
-        transition: all 0.3s ease
-        position: relative
+        transition: all 0.25s ease
+        letter-spacing: 0.3px
 
-        &:hover
+        &:hover:not(:disabled)
+            background: #1ed760
             transform: translateY(-2px)
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5)
+            box-shadow: 0 8px 24px rgba(29, 185, 84, 0.35)
 
-        &:active
+        &:active:not(:disabled)
             transform: translateY(0)
 
-        &.success
-            background-color: #4caf50
-            color: white
+        &:disabled
+            cursor: not-allowed
+            opacity: 0.7
 
-            span
-                position: relative
-                z-index: 1
+        &.success
+            background: #1db954
+            color: #000
 
         &.error
-            background-color: #f44336
-            color: white
+            background: #e53935
+            color: #fff
+            box-shadow: 0 6px 20px rgba(229, 57, 53, 0.3)
 
         &.loading
-            cursor: not-allowed
+            background: rgba(29, 185, 84, 0.5)
+            color: rgba(0, 0, 0, 0.7)
 
-            &::after
-                content: ''
-                position: absolute
-                top: 0
-                left: 0
-                height: 100%
-                width: 0
-                background-color: rgba(76, 175, 80, 0.5)
-                z-index: 0
-                animation: successFill 3s forwards
-                border-radius: inherit
-
-        .error,
-        .success
-            border-radius: 10px
-            padding: 12px 16px
-            font-size: 13px
-            font-weight: 500
-            border: 2px solid
-            animation: slideIn 0.3s ease
-
-        .error
-            background: rgba(220, 38, 38, 0.1)
-            border-color: rgba(220, 38, 38, 0.3)
-            color: #fca5a5
-
-        .success
-            background: rgba(34, 197, 94, 0.1)
-            border-color: rgba(34, 197, 94, 0.3)
-            color: #86efac
-
+// =============================================
 // Animations
+// =============================================
 @keyframes slideIn
     from
         opacity: 0
-        transform: translateY(-10px)
+        transform: translateY(-8px)
     to
         opacity: 1
         transform: translateY(0)
 
-@keyframes successFill
-    from
-        width: 0%
-    to
-        width: 100%
-
-// Responsive Design
-@media (max-width: 1024px)
+// =============================================
+// Responsive
+// =============================================
+@media (max-width: 860px)
     .upload-song-form .form-content
         grid-template-columns: 1fr
-        gap: 24px
 
-    .media-box,
-    .image-box
-        height: 200px !important
+    .upload-song-form .media-box
+        height: 200px
 
-    .multi-select
-        max-height: 140px
+    .upload-song-form .image-box
+        aspect-ratio: 16 / 7
 
-@media (max-width: 600px)
     .card
-        padding: 20px
+        padding: 24px 20px
 
-    .media-box,
-    .image-box
-        height: 180px !important
+@media (max-width: 480px)
+    .upload-song-page
+        padding: 70px 12px 40px
 
-    .multi-select .options
-        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr))
-        gap: 6px
+    .upload-song-form .media-box
+        height: 160px
+
+    .upload-song-form .multi-select .options
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr))

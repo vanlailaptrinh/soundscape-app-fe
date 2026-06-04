@@ -97,6 +97,9 @@ const YourMusic = ({ listenSong }) => {
                             <div className="yourMusicTitle">{song.title}</div>
                             <div className="yourMusicArtist" onClick={() => navigate(`/artist/${song.artistId}`)}>
                                 {song.artistName || 'Unknown Artist'}
+                                {song.collaborators && song.collaborators.length > 0 && (
+                                    <span>{` ft. ${song.collaborators.map(c => c.username).join(', ')}`}</span>
+                                )}
                             </div>
                             <div className="yourMusicPlayButton" onClick={(e) => handlePlay(e, song)}>
                                 <FontAwesomeIcon icon={faPlay} />

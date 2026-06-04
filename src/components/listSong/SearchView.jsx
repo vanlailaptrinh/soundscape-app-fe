@@ -77,7 +77,12 @@ const SearchView = ({ listenSong }) => {
                                     <img src={song.imageUrl || NoAvatar} alt={song.title} />
                                 </div>
                                 <div className="songTitle">{song.title}</div>
-                                <div className="songArtist">{song.artistName}</div>
+                                <div className="songArtist">
+                                    {song.artistName || song.username || song.author}
+                                    {song.collaborators && song.collaborators.length > 0 && (
+                                        <span>{` ft. ${song.collaborators.map(c => c.username).join(', ')}`}</span>
+                                    )}
+                                </div>
                                 <div className="songPlayButton" onClick={(e) => handlePlay(e, song)}>
                                     <FontAwesomeIcon icon={faPlay} />
                                 </div>

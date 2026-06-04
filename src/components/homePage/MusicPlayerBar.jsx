@@ -263,6 +263,11 @@ const MusicPlayerBar = () => {
                     <div className="title">{currentSong?.song?.title || 'No song selected'}</div>
                     <div className="artist">
                         {currentSong?.song?.artist || currentSong?.artist?.username || 'No nameF'}
+                        {currentSong?.song?.collaborators && currentSong.song.collaborators.length > 0 && (
+                            <span className="feat-artists">
+                                {` ft. ${currentSong.song.collaborators.map(c => c.username).join(', ')}`}
+                            </span>
+                        )}
                     </div>
                 </div>
             </div>

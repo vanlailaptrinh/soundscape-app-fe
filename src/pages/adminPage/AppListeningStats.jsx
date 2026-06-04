@@ -17,10 +17,13 @@ const AppListeningStats = ({ openChart }) => {
 
     const fetchStats = async () => {
         const days = ranges[range];
-        const res = await getAppListeningStats(days);
-
-        setChartData(res.data.chart);
-        setTopSongs(res.data.topSongs);
+        try {
+            const data = await getAppListeningStats(days);
+            setChartData(data.chart);
+            setTopSongs(data.topSongs);
+        } catch (err) {
+            console.error('Failed to fetch app listening stats:', err);
+        }
     };
 
     useEffect(() => {
