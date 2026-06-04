@@ -22,7 +22,8 @@ const authSlice = createSlice({
         setReduxLogout: (state) => {
             state.reduxAccessToken = null;
             state.reduxUser = null;
-            state.reduxIsLogin = false
+            state.reduxIsLogin = false;
+            localStorage.clear();
         },
         setReduxEmail: (state, action) => {
             state.reduxEmail = action.payload;

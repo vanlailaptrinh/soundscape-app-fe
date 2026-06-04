@@ -7,7 +7,7 @@ const SongList = ({ onSelectSong, refreshFlag }) => {
     const [songs, setSongs] = useState([]);
     const [page, setPage] = useState(0);
     const [size] = useState(10);
-    const [pages, setPages] = useState(0);
+    const [pages, setPages] = useState({ totalPages: 0 });
 
     const [sortField, setSortField] = useState('id');
     const [sortDir, setSortDir] = useState('asc');
@@ -132,7 +132,7 @@ const SongList = ({ onSelectSong, refreshFlag }) => {
                 </table>
             </div>
 
-            <Pagination page={page} totalPages={pages.totalPages} onPageChange={(newPage) => setPage(newPage)} />
+            <Pagination page={page} totalPages={pages?.totalPages || 0} onPageChange={(newPage) => setPage(newPage)} />
         </div>
     );
 };

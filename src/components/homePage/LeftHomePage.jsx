@@ -11,6 +11,7 @@ import { setReduxLibrarySong } from '~/redux/reducer/songNotWhitelistSlice';
 const LeftHomePage = () => {
     const dispatch = useDispatch();
     const reduxRefresh = useSelector((state) => state.songNotWhite.reduxRefresh);
+    const isLogin = useSelector((state) => state.auth.reduxIsLogin);
     const [followedData, setFollowedData] = useState({
         artistFollowed: [],
         albumFollowed: [],
@@ -35,6 +36,16 @@ const LeftHomePage = () => {
     useEffect(() => {
         fetchFollowed();
     }, [reduxRefresh, fetchFollowed]);
+
+    useEffect(() => {
+        if (!isLogin) {
+            setFollowedData({
+                artistFollowed: [],
+                albumFollowed: [],
+                playlistFollowed: [],
+            });
+        }
+    }, [isLogin]);
 
     const filterBySearch = (items, type) => {
         if (!searchQuery) return items;
