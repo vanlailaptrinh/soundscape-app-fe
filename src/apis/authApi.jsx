@@ -9,9 +9,9 @@ async function registerInitiate(email, password) {
     }
 }
 
-async function registerVerify(email, verificationCode) {
+async function registerVerify(token) {
     try {
-        const res = await api.post('/auth/register-verify', { email, verificationCode }, { skipAuthCheck: true });
+        const res = await api.get(`/auth/register-verify?token=${token}`, { skipAuthCheck: true });
         return res.data;
     } catch (err) {
         throw err;
