@@ -1,7 +1,15 @@
 import { useMemo, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { follow, unfollow, followedArtistApi, followedAlbumApi, deletePlaylist, deleteAlbum } from '~/apis/songApi';
+import {
+    follow,
+    unfollow,
+    followedArtistApi,
+    followedAlbumApi,
+    deletePlaylist,
+    deleteAlbum,
+    getApiErrorMessage,
+} from '~/apis/songApi';
 import { IconClose, IconFollow, IconPlusCircle, IconTriangle } from '~/assets/image/icons';
 import { setReduxRefresh } from '~/redux/reducer/songNotWhitelistSlice';
 
@@ -210,7 +218,7 @@ export const useMenuOptions = (reduxData, onNotification) => {
                                         const updatedFollowed = await followedArtistApi();
                                         setFollowedArtists(updatedFollowed || []);
                                     } catch (e) {
-                                        onNotification('Vui lòng đăng nhập để follow/unfollow nghệ sĩ');
+                                        onNotification(getApiErrorMessage(e, 'Vui lòng đăng nhập để follow/unfollow nghệ sĩ'));
                                     }
                                 }
                             }
@@ -261,7 +269,7 @@ export const useMenuOptions = (reduxData, onNotification) => {
                                         const updatedFollowedAlbums = await followedAlbumApi();
                                         setFollowedAlbums(updatedFollowedAlbums || []);
                                     } catch (e) {
-                                        onNotification('Vui lòng đăng nhập để follow/unfollow album');
+                                        onNotification(getApiErrorMessage(e, 'Vui lòng đăng nhập để follow/unfollow album'));
                                     }
                                 }
                             }

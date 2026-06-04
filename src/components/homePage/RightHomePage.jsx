@@ -6,7 +6,7 @@ import { isVideo } from '~/util/fileUtil';
 import { IconRightArrowBox, IconWiden } from '~/assets/image/icons';
 import { setReduxIsRight, setReduxExtendedFullRight, setReduxRefresh } from '~/redux/reducer/songNotWhitelistSlice';
 import CommentsSection from '~/components/comment/CommentsSection';
-import { follow, unfollow, followedArtistApi } from '~/apis/songApi';
+import { follow, unfollow, followedArtistApi, getApiErrorMessage } from '~/apis/songApi';
 import './RightHomePage.sass';
 import RatingSection from '~/components/rating/RatingSection';
 
@@ -126,7 +126,7 @@ const RightHomePage = () => {
             const updatedFollowed = await followedArtistApi();
             setFollowedArtists(updatedFollowed || []);
         } catch (e) {
-            setNotification('Vui lòng đăng nhập để follow/unfollow nghệ sĩ');
+            setNotification(getApiErrorMessage(e, 'Vui lòng đăng nhập để follow/unfollow nghệ sĩ'));
         }
     };
 

@@ -1,5 +1,10 @@
 import api from './api';
 
+export const getApiErrorMessage = (error, fallback = 'Something went wrong') => {
+    const data = error?.response?.data;
+    return data?.message || data?.error || (typeof data === 'string' ? data : null) || fallback;
+};
+
 async function uploadSong(formData) {
     const res = await api.post('/artist/upload-song', formData, {
         headers: {

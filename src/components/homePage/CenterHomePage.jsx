@@ -35,7 +35,7 @@ const CenterHomePage = () => {
     const reduxIsRight = useSelector((state) => state.songNotWhite.reduxIsRight);
     const reduxIsPlaying = useSelector((state) => state.songNotWhite.reduxIsPlaying);
     const isLogin = useSelector((state) => state.auth.reduxIsLogin);
-    const reduxSongs = useSelector((state) => state.song.reduxSongs);
+    const reduxListSong = useSelector((state) => state.song.reduxListSong);
     const reduxCurrentSongIndex = useSelector((state) => state.song.reduxCurrentSongIndex);
 
     const [trendingSongs, setTrendingSongs] = useState([]);
@@ -104,11 +104,11 @@ const CenterHomePage = () => {
     }, [reduxCurrentSongIndex, isLogin, updateHistory]);
 
     useEffect(() => {
-        const currentSong = reduxSongs?.[reduxCurrentSongIndex]?.song;
+        const currentSong = reduxListSong?.[reduxCurrentSongIndex]?.song;
         if (currentSong?.id) {
             setPrevSongId(currentSong.id);
         }
-    }, [reduxCurrentSongIndex, reduxSongs]);
+    }, [reduxCurrentSongIndex, reduxListSong]);
 
     const listenSong = useCallback(
         async (e, songId, isRecommended = false) => {
@@ -141,7 +141,7 @@ const CenterHomePage = () => {
     useEffect(() => {
         if (!reduxIsPlaying && lastWasRecommended && canShow && lastPlayedRecommendedRef.current) {
             const songId =
-                prevSongId || reduxSongs?.[reduxCurrentSongIndex]?.song?.id || lastPlayedRecommendedRef.current;
+                prevSongId || reduxListSong?.[reduxCurrentSongIndex]?.song?.id || lastPlayedRecommendedRef.current;
             setFinishedSongId(songId);
             setShowFeedback(true);
             markShown();
@@ -149,7 +149,7 @@ const CenterHomePage = () => {
             setLastWasRecommended(false);
             lastPlayedRecommendedRef.current = null;
         }
-    }, [reduxIsPlaying, lastWasRecommended, canShow, markShown, prevSongId, reduxSongs, reduxCurrentSongIndex]);
+    }, [reduxIsPlaying, lastWasRecommended, canShow, markShown, prevSongId, reduxListSong, reduxCurrentSongIndex]);
 
     const mergeArtistToSong = useCallback((data) => {
         return data.songs.map((song) => ({
@@ -226,7 +226,7 @@ const CenterHomePage = () => {
                     />
                 );
             case 'profile':
-                return <ProfileView />;
+                return <ProfileView listenSong={listenSong} />;
             case 'search':
                 return <SearchView listenSong={listenSong} />;
             case 'your-music':

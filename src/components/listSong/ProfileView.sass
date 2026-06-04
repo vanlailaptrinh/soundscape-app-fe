@@ -1,27 +1,240 @@
+.profileLoading
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 300px
+    color: #aaa
+    font-size: 18px
+
 .profilePage
+    padding-bottom: 40px
+
     .profileHeader
-        background: linear-gradient(135deg, rgb(68 8 242), rgb(190 232 215))
+        background: linear-gradient(135deg, #1a0533 0%, #2d1b69 30%, #1DB954 100%)
         display: flex
         align-items: center
-        justify-content: left
-        gap: 20px
-
+        gap: 28px
         border-radius: 20px
-        padding: 40px 20px
+        padding: 40px 32px
+        position: relative
+        overflow: hidden
 
-        .profileAvatar
+        &::before
+            content: ''
+            position: absolute
+            top: -50%
+            right: -30%
+            width: 400px
+            height: 400px
+            background: radial-gradient(circle, rgba(29, 185, 84, 0.15) 0%, transparent 70%)
             border-radius: 50%
-            width: 150px
-            height: 150px
+            pointer-events: none
 
-        .profileUsername
-            color: white
-            font-size: 64px
-            font-weight: bold
+        .profileAvatarWrapper
+            position: relative
+            flex-shrink: 0
+            cursor: default
+            z-index: 1
+
+            .profileAvatar
+                border-radius: 50%
+                width: 160px
+                height: 160px
+                object-fit: cover
+                border: 4px solid rgba(255, 255, 255, 0.15)
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4)
+                transition: all 0.3s ease
+
+            .avatarOverlay
+                position: absolute
+                top: 0
+                left: 0
+                width: 160px
+                height: 160px
+                border-radius: 50%
+                background: rgba(0, 0, 0, 0.6)
+                display: flex
+                flex-direction: column
+                align-items: center
+                justify-content: center
+                gap: 4px
+                opacity: 0
+                transition: opacity 0.3s ease
+                cursor: pointer
+                backdrop-filter: blur(4px)
+
+                span
+                    color: white
+                    font-size: 12px
+                    font-weight: 500
+
+            &:hover .avatarOverlay
+                opacity: 1
+
+            &:hover .profileAvatar
+                border-color: rgba(29, 185, 84, 0.5)
+
+        .profileInfo
+            flex: 1
+            z-index: 1
+            min-width: 0
+
+            .profileUsername
+                color: white
+                font-size: 52px
+                font-weight: 800
+                line-height: 1.1
+                margin-bottom: 8px
+                letter-spacing: -1px
+
+            .editUsernameInput
+                background: rgba(255, 255, 255, 0.1)
+                border: 2px solid rgba(255, 255, 255, 0.2)
+                border-radius: 12px
+                color: white
+                font-size: 28px
+                font-weight: 700
+                padding: 10px 16px
+                width: 100%
+                max-width: 500px
+                outline: none
+                transition: all 0.3s ease
+                backdrop-filter: blur(8px)
+                margin-bottom: 8px
+
+                &::placeholder
+                    color: rgba(255, 255, 255, 0.4)
+
+                &:focus
+                    border-color: #1DB954
+                    background: rgba(255, 255, 255, 0.15)
+                    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.15)
+
+            .profileDescription
+                color: rgba(255, 255, 255, 0.7)
+                font-size: 15px
+                margin-bottom: 8px
+                line-height: 1.5
+                max-width: 500px
+
+            .editDescriptionInput
+                background: rgba(255, 255, 255, 0.1)
+                border: 2px solid rgba(255, 255, 255, 0.2)
+                border-radius: 12px
+                color: white
+                font-size: 14px
+                padding: 10px 16px
+                width: 100%
+                max-width: 500px
+                outline: none
+                resize: vertical
+                min-height: 80px
+                transition: all 0.3s ease
+                backdrop-filter: blur(8px)
+                font-family: inherit
+                margin-bottom: 8px
+
+                &::placeholder
+                    color: rgba(255, 255, 255, 0.4)
+
+                &:focus
+                    border-color: #1DB954
+                    background: rgba(255, 255, 255, 0.15)
+                    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.15)
+
+            .profileEmail
+                color: rgba(255, 255, 255, 0.45)
+                font-size: 13px
+                letter-spacing: 0.3px
+
+        .profileActions
+            position: absolute
+            top: 20px
+            right: 24px
+            display: flex
+            gap: 10px
+            z-index: 2
+
+            .profileBtn
+                border: none
+                border-radius: 30px
+                padding: 10px 24px
+                font-size: 14px
+                font-weight: 600
+                cursor: pointer
+                display: flex
+                align-items: center
+                gap: 8px
+                transition: all 0.25s ease
+                letter-spacing: 0.3px
+
+            .editBtn
+                background: rgba(255, 255, 255, 0.12)
+                color: white
+                backdrop-filter: blur(8px)
+                border: 1px solid rgba(255, 255, 255, 0.15)
+
+                &:hover
+                    background: rgba(255, 255, 255, 0.22)
+                    transform: translateY(-1px)
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2)
+
+            .saveBtn
+                background: #1DB954
+                color: #000
+
+                &:hover:not(:disabled)
+                    background: #1ed760
+                    transform: translateY(-1px)
+                    box-shadow: 0 4px 16px rgba(29, 185, 84, 0.4)
+
+                &:disabled
+                    opacity: 0.6
+                    cursor: not-allowed
+
+                .savingSpinner
+                    display: inline-block
+                    width: 16px
+                    height: 16px
+                    border: 2px solid rgba(0, 0, 0, 0.2)
+                    border-top-color: #000
+                    border-radius: 50%
+                    animation: spin 0.7s linear infinite
+
+            .cancelBtn
+                background: rgba(255, 255, 255, 0.08)
+                color: rgba(255, 255, 255, 0.8)
+                border: 1px solid rgba(255, 255, 255, 0.1)
+
+                &:hover:not(:disabled)
+                    background: rgba(255, 60, 60, 0.15)
+                    color: #ff6b6b
+                    border-color: rgba(255, 60, 60, 0.3)
+
+    .saveMessage
+        margin-top: 16px
+        padding: 12px 20px
+        border-radius: 12px
+        font-size: 14px
+        font-weight: 500
+        animation: slideDown 0.3s ease
+
+        &.success
+            background: rgba(29, 185, 84, 0.15)
+            color: #1DB954
+            border: 1px solid rgba(29, 185, 84, 0.3)
+
+        &.error
+            background: rgba(255, 60, 60, 0.15)
+            color: #ff6b6b
+            border: 1px solid rgba(255, 60, 60, 0.3)
 
     .listeningChartContainer
         h2
-            margin-top: 20px
+            margin-top: 32px
+            font-size: 22px
+            font-weight: 700
+            color: #fff
 
         .daysButtonGroup
             display: flex
@@ -35,13 +248,113 @@
                 border-radius: 10px
                 border: none
                 cursor: pointer
-                transition: 0.2s ease
+                transition: all 0.2s ease
                 font-size: 14px
 
                 &:hover
                     background: #3a3a3a
-
+                    transform: translateY(-1px)
 
                 &.active
                     background: #1DB954
                     color: #000
+                    font-weight: 600
+
+        .chartEmpty
+            color: #666
+            padding: 40px
+            text-align: center
+            font-size: 15px
+
+    .recentListeningContainer
+        margin-top: 32px
+
+        h2
+            font-size: 22px
+            font-weight: 700
+            color: #fff
+            margin-bottom: 20px
+
+        .recentSongsList
+            display: grid
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
+            gap: 16px
+
+            .recentSongItem
+                background: rgba(255, 255, 255, 0.04)
+                border-radius: 12px
+                padding: 12px
+                cursor: pointer
+                transition: all 0.3s ease
+                display: flex
+                flex-direction: column
+                position: relative
+                overflow: hidden
+                border: 1px solid rgba(255, 255, 255, 0.03)
+
+                &:hover
+                    background: rgba(255, 255, 255, 0.08)
+                    transform: translateY(-4px)
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3)
+
+                    .recentPlayButton
+                        opacity: 1
+                        transform: translate(0, 0)
+
+                .recentSongImageWrapper
+                    position: relative
+                    width: 100%
+                    aspect-ratio: 1
+                    border-radius: 8px
+                    overflow: hidden
+                    margin-bottom: 10px
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3)
+
+                    .recentSongImage
+                        width: 100%
+                        height: 100%
+                        object-fit: cover
+
+                    .recentPlayButton
+                        position: absolute
+                        bottom: 8px
+                        right: 8px
+                        background: #1DB954
+                        border-radius: 50%
+                        width: 36px
+                        height: 36px
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4)
+                        opacity: 0
+                        transform: translate(0, 8px)
+                        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)
+
+                        &:hover
+                            transform: scale(1.1)
+                            background: #1ed760
+
+                .recentSongInfo
+                    width: 100%
+
+                    .recentSongTitle
+                        font-size: 14px
+                        font-weight: 600
+                        color: #fff
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
+                        text-align: left
+
+@keyframes spin
+    to
+        transform: rotate(360deg)
+
+@keyframes slideDown
+    from
+        opacity: 0
+        transform: translateY(-8px)
+    to
+        opacity: 1
+        transform: translateY(0)

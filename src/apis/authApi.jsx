@@ -55,4 +55,15 @@ async function loginWithGoogle(code) {
     }
 }
 
-export { registerInitiate, registerVerify, logout, login, loginWithGoogle, profile };
+async function updateMyProfile(formData) {
+    try {
+        const res = await api.put('/user/profile/update', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export { registerInitiate, registerVerify, logout, login, loginWithGoogle, profile, updateMyProfile };
