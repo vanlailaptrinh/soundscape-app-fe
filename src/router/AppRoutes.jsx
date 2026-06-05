@@ -29,7 +29,7 @@ const pages = {
 
 const getAnimationKey = (pathname = '') => {
     // nhóm home
-    const homeRoutes = ['/', '/album', '/artist', '/playlist', '/search', '/your-music', 'profile'];
+    const homeRoutes = ['/', '/album', '/artist', '/playlist', '/search', '/your-music', '/profile'];
     const isHome = homeRoutes.some((route) => pathname === route || pathname.startsWith(route + '/'));
 
     // nhóm admin
