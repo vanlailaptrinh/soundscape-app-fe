@@ -45,9 +45,9 @@ async function login(email, password) {
     }
 }
 
-async function loginWithGoogle(code) {
+async function loginWithGoogle(code, redirectUri) {
     try {
-        const res = await api.post('/auth/google-callback', { code }, { skipAuthCheck: true });
+        const res = await api.post('/auth/google-callback', { code, redirectUri }, { skipAuthCheck: true });
         console.log(res);
         return res.data;
     } catch (err) {

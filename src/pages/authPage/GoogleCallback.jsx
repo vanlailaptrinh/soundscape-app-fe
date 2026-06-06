@@ -7,7 +7,8 @@ const GoogleCallback = () => {
         const code = params.get('code');
 
         if (code) {
-            loginWithGoogle(code)
+            const redirectUri = window.location.origin + '/api/auth/google-callback';
+            loginWithGoogle(code, redirectUri)
                 .then((res) => {
                     if (window.opener) {
                         window.opener.postMessage({ accessToken: res.accessToken }, window.location.origin);
