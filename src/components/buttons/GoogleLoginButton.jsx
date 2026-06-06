@@ -13,7 +13,7 @@ const GoogleLoginButton = ({ setErrorMessage }) => {
 
     const loginGoogle = () => {
         const clientId = '307604724969-p16ppk2tnvd8o42s2l0pgrekf2jqusft.apps.googleusercontent.com';
-        const redirectUri = 'https://vantrandigital.id.vn/' + '/api/auth/google-callback';
+        const redirectUri = 'https://api.vantrandigital.id.vn/' + '/api/auth/google-callback';
 
         const authUrl =
             `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}` +
