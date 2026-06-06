@@ -21,7 +21,7 @@ const pages = {
     '/signUpVerifyPage': SignUpVerifyPage,
     '/api/auth/register-verify': SignUpVerifyPage,
     '/loginPage': LoginPage,
-    '/auth/google-callback': GoogleCallback,
+    '/api/auth/google-callback': GoogleCallback,
     '/song/upload': UploadSongPage,
     '/admin/*': AdminPage,
     '/song/:songId/stats': SongStatsPage,

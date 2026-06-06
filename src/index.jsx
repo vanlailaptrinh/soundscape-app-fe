@@ -9,7 +9,7 @@ import './styles/variables.sass';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <GoogleOAuthProvider clientId="705243783215-ei795tnvk2891u4pqvftiea6h80rjb1h.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="307604724969-8rr5kbt95c5pppb9pggle782uc5hcjbo.apps.googleusercontent.com">
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <BrowserRouter>

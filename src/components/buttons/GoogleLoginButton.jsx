@@ -12,8 +12,8 @@ const GoogleLoginButton = ({ setErrorMessage }) => {
     const navigate = useNavigate();
 
     const loginGoogle = () => {
-        const clientId = '705243783215-ei795tnvk2891u4pqvftiea6h80rjb1h.apps.googleusercontent.com';
-        const redirectUri = 'http://localhost:3000/auth/google-callback';
+        const clientId = '307604724969-p16ppk2tnvd8o42s2l0pgrekf2jqusft.apps.googleusercontent.com';
+        const redirectUri = 'https://vantrandigital.id.vn/' + '/api/auth/google-callback';
 
         const authUrl =
             `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}` +
