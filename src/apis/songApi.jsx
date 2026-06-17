@@ -577,6 +577,15 @@ async function getMyListeningDaily(days = 30) {
     }
 }
 
+async function createAiPlaylist(prompt) {
+    try {
+        const res = await api.post('/user/ai-playlist', { prompt });
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
+}
+
 export {
     uploadSong,
     getAllSongGenres,
@@ -635,4 +644,5 @@ export {
     getAllArtists,
     getMyProfile,
     getMyListeningDaily,
+    createAiPlaylist,
 };
