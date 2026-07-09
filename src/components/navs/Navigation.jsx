@@ -24,6 +24,7 @@ import {
     IconFriends,
 } from '~/assets/image/icons';
 import { logout } from '~/apis/authApi';
+import ThemeToggle from '~/components/theme/ThemeToggle';
 import './Navigation.sass';
 
 const Navigation = () => {
@@ -173,6 +174,8 @@ const Navigation = () => {
                             {isNotificationActive ? <IconNotificationFull /> : <IconNotificationEmpty />}
                         </div>
 
+                        <ThemeToggle />
+
                         <div className="icon-friends">
                             <IconFriends />
                         </div>
@@ -284,6 +287,8 @@ const Navigation = () => {
                                 <span>Install App</span>
                             </div>
                         </div>
+
+                        <ThemeToggle />
 
                         <Link className="link" to="/signUpInitiatePage">
                             <div className="sign-up">Sign up</div>

@@ -6,7 +6,6 @@ import LeftHomePage from '~/components/homePage/LeftHomePage';
 import CenterHomePage from '~/components/homePage/CenterHomePage';
 import RightHomePage from '~/components/homePage/RightHomePage';
 import MusicPlayerBar from '~/components/homePage/MusicPlayerBar';
-import ThemeToggle from '~/components/theme/ThemeToggle';
 
 import "./HomePage.sass";
 
@@ -18,9 +17,6 @@ const HomePage = () => {
         <div className='homePage'>
             <Navigator />
             <div className="content">
-                <div className="homeFloatingControls">
-                    <ThemeToggle />
-                </div>
                 <LeftHomePage />
                 <CenterHomePage />
                 <RightHomePage />
