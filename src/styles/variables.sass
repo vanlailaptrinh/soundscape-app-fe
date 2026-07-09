@@ -68,3 +68,26 @@ html, body
 
     --padding-lv1: 8px
     --padding-lv2: 20px
+
+:root.theme-light
+    --black-lv1: rgb(247, 248, 250)
+    --black-lv2: rgb(255, 255, 255)
+    --black-lv3: rgb(233, 237, 242)
+    --black-lv4: rgb(76, 85, 99)
+
+    --gray-lv1: rgb(224, 229, 235)
+    --gray-lv2: rgb(196, 205, 216)
+
+    --white-lv1: rgb(17, 24, 39)
+    --white-lv2: rgb(55, 65, 81)
+
+    --green-lv1: rgb(22, 163, 74)
+    --blue-lv1: rgb(220, 231, 239)
+
+    color-scheme: light
+
+:root.theme-light svg path[fill="white"]
+    fill: var(--white-lv1)
+
+:root.theme-light svg path[fill="black"]
+    fill: var(--black-lv1)
